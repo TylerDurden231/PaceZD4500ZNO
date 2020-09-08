@@ -384,13 +384,13 @@ def runTest():
                                             #TEST_CREATION_API.write_log_to_file("")
                                         NOS_API.Remove_UMA_FIFO(FIFO_Id)
                                         TEST_CREATION_API.write_log_to_file("Started in pairing mode")
-                                        NOS_API.Send_RF4CE_Command("X","feito");
+                                        NOS_API.Send_RF4CE_Command("X","feito")
                                         time.sleep(2)  
-                                        NOS_API.Send_RF4CE_Command("e");
+                                        NOS_API.Send_RF4CE_Command("e")
                                         time.sleep(1.2)
-                                        NOS_API.Send_RF4CE_Command("e");
+                                        NOS_API.Send_RF4CE_Command("e")
                                         time.sleep(1.5)                                
-                                        NOS_API.Send_RF4CE_Command("1");                                    
+                                        NOS_API.Send_RF4CE_Command("1")                                   
                                         time.sleep(5)
                                         if not(NOS_API.grab_picture("Paring_1")):
                                             #if not(NOS_API.Remove_And_Check(FIFO_Id)):
@@ -435,11 +435,11 @@ def runTest():
                                             return
                                                 
                                         if(TEST_CREATION_API.compare_pictures("Paring_ref", "Paring_1", "[Paring]")):
-                                            NOS_API.Send_RF4CE_Command("e");
+                                            NOS_API.Send_RF4CE_Command("e")
                                             time.sleep(1.5)  
-                                            NOS_API.Send_RF4CE_Command("e");
+                                            NOS_API.Send_RF4CE_Command("e")
                                             time.sleep(1.5)                                    
-                                            NOS_API.Send_RF4CE_Command("1");                                    
+                                            NOS_API.Send_RF4CE_Command("1")                                  
                                             time.sleep(5)
                                             
                                             if not(NOS_API.grab_picture("Paring_1")):
@@ -543,13 +543,13 @@ def runTest():
                                         #if not(NOS_API.Remove_And_Check(FIFO_Id)):
                                             #TEST_CREATION_API.write_log_to_file("")
                                         if (NOS_API.wait_for_multiple_pictures(["Paring_ref"], WAIT_AUTODIAG_TEST, ["[Paring]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
-                                            NOS_API.Send_RF4CE_Command("e");
+                                            NOS_API.Send_RF4CE_Command("e")
                                             time.sleep(1.2)
-                                            NOS_API.Send_RF4CE_Command("e");
+                                            NOS_API.Send_RF4CE_Command("e")
                                             time.sleep(1.5)
-                                            NOS_API.Send_RF4CE_Command("1");
+                                            NOS_API.Send_RF4CE_Command("1")
                                             time.sleep(1)
-                                            NOS_API.Send_RF4CE_Command("9");
+                                            NOS_API.Send_RF4CE_Command("9")
                                             
                                             if not(NOS_API.grab_picture("Paring")):
                                                 NOS_API.Remove_UMA_FIFO(FIFO_Id)
@@ -595,13 +595,13 @@ def runTest():
                                                 
                                             if(TEST_CREATION_API.compare_pictures("Paring_ref", "Paring", "[Paring]")):
 
-                                                NOS_API.Send_RF4CE_Command("X","feito");
+                                                NOS_API.Send_RF4CE_Command("X","feito")
                                                 time.sleep(2)  
-                                                NOS_API.Send_RF4CE_Command("e");
+                                                NOS_API.Send_RF4CE_Command("e")
                                                 time.sleep(1.2)
-                                                NOS_API.Send_RF4CE_Command("e");
+                                                NOS_API.Send_RF4CE_Command("e")
                                                 time.sleep(1.5)                                    
-                                                NOS_API.Send_RF4CE_Command("1");                                    
+                                                NOS_API.Send_RF4CE_Command("1")                                  
                                                 time.sleep(5)
 
                                                 if not(NOS_API.grab_picture("Paring_1")):
@@ -740,11 +740,11 @@ def runTest():
                                             NOS_API.Remove_UMA_FIFO(FIFO_Id)
                                             #if not(NOS_API.Remove_And_Check(FIFO_Id)):
                                                 #TEST_CREATION_API.write_log_to_file("")
-                                            NOS_API.Send_RF4CE_Command("X","feito");
+                                            NOS_API.Send_RF4CE_Command("X","feito")
                                             time.sleep(2)  
-                                            NOS_API.Send_RF4CE_Command("e");
+                                            NOS_API.Send_RF4CE_Command("e")
                                             time.sleep(1.5)                                    
-                                            NOS_API.Send_RF4CE_Command("1");                                    
+                                            NOS_API.Send_RF4CE_Command("1")                                   
                                             time.sleep(5)
                                             if not(NOS_API.grab_picture("Paring_1")):
                                                 NOS_API.Remove_UMA_FIFO(FIFO_Id)
@@ -839,11 +839,11 @@ def runTest():
                                             #if not(NOS_API.Remove_And_Check(FIFO_Id)):
                                                 #TEST_CREATION_API.write_log_to_file("")
                                             if (NOS_API.wait_for_multiple_pictures(["Paring_ref"], WAIT_AUTODIAG_TEST, ["[Paring]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
-                                                NOS_API.Send_RF4CE_Command("e");
+                                                NOS_API.Send_RF4CE_Command("e")
                                                 time.sleep(1.5)
-                                                NOS_API.Send_RF4CE_Command("1");
+                                                NOS_API.Send_RF4CE_Command("1")
                                                 time.sleep(1)
-                                                NOS_API.Send_RF4CE_Command("9");
+                                                NOS_API.Send_RF4CE_Command("9")
                                                 
                                                 if not(NOS_API.grab_picture("Paring")):
                                                     NOS_API.Remove_UMA_FIFO(FIFO_Id)
@@ -890,11 +890,11 @@ def runTest():
                                                 if(TEST_CREATION_API.compare_pictures("Paring_ref", "Paring", "[Paring]")):
                                                     
                                                 
-                                                    NOS_API.Send_RF4CE_Command("X","feito");
+                                                    NOS_API.Send_RF4CE_Command("X","feito")
                                                     time.sleep(2)  
-                                                    NOS_API.Send_RF4CE_Command("e");
+                                                    NOS_API.Send_RF4CE_Command("e")
                                                     time.sleep(1.5)                                    
-                                                    NOS_API.Send_RF4CE_Command("1");                                    
+                                                    NOS_API.Send_RF4CE_Command("1")                                   
                                                     time.sleep(5)
             
                                                     
@@ -1157,7 +1157,7 @@ def runTest():
                     Menu_AD = NOS_API.wait_for_multiple_pictures(["Menu_ref"], WAIT_AUTODIAG_TEST, ["[Menu]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD])
                     if (Menu_AD != -1 and Menu_AD != -2):
                         
-                        NOS_API.Send_RF4CE_Command("o");
+                        NOS_API.Send_RF4CE_Command("o")
                         time.sleep(3)
                         
                         if not(NOS_API.grab_picture("Auto_Test")):
@@ -1203,7 +1203,7 @@ def runTest():
                             return
                 
                         if (TEST_CREATION_API.compare_pictures("Menu_ref", "Auto_Test", "[Menu]")):
-                            NOS_API.Send_RF4CE_Command("o");
+                            NOS_API.Send_RF4CE_Command("o")
                             time.sleep(3)
                             if not(NOS_API.grab_picture("Auto_Test")):
                                 #if not(NOS_API.Remove_And_Check(FIFO_Id)):
@@ -1262,7 +1262,7 @@ def runTest():
                         #if not(NOS_API.Remove_And_Check(FIFO_Id)):
                             #TEST_CREATION_API.write_log_to_file("")
                         if (NOS_API.wait_for_multiple_pictures(["Audio_Video_ref"], 15, ["[AVRed]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
-                            NOS_API.Send_RF4CE_Command("o");
+                            NOS_API.Send_RF4CE_Command("o")
                             time.sleep(7)
                             if not(NOS_API.grab_picture("Auto_Test")):
                                 TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1313,18 +1313,18 @@ def runTest():
                             
                             #if(Button_Result and Hardware_Result and Perif_Result and SC_Result and Flash_Result and HDCP_Result):
                             if(Hardware_Result and Perif_Result and SC_Result and Flash_Result and HDCP_Result):
-                                NOS_API.Send_RF4CE_Command("b");
+                                NOS_API.Send_RF4CE_Command("b")
                                 AutoTeste = True                                               
                                 break
                             else:
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Button_OK]")):
                                     AutoTeste = False
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("B","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("B","feito")
                                     time.sleep(3)
                                     NOS_API.display_custom_dialog("Esperar 2seg e pressionar 'Reset' sem segurar", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                     while (counter_buttons < 3):
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(12)
                                         if not(NOS_API.grab_picture("Buttons")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1431,8 +1431,8 @@ def runTest():
                                         
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Hardware_OK]")):
                                     AutoTeste = False
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("H","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("H","feito")
                                     time.sleep(1)
                                     if not(NOS_API.grab_picture("Hardware")):
                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1517,8 +1517,8 @@ def runTest():
                                     AutoTeste = True
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Perif_OK]")):
                                     AutoTeste = False
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("J","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("J","feito")
                                     time.sleep(3)
                                     if not(NOS_API.grab_picture("Peripherals")):
                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1560,8 +1560,8 @@ def runTest():
                                         return
                                     if not(TEST_CREATION_API.compare_pictures("Peripherals_ref", "Peripherals", "[Per_USB_OK]")):
                                         NOS_API.display_custom_dialog("Confirme o cabo USB", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
-                                        NOS_API.Send_RF4CE_Command("b");
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("b")
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(5)
                                         if not(NOS_API.grab_picture("Peripherals1")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1616,8 +1616,8 @@ def runTest():
                                     if not(TEST_CREATION_API.compare_pictures("Peripherals_ref", "Peripherals", "[Per_Eth_OK]")):
                                         AutoTeste = False
                                         NOS_API.display_custom_dialog("Confirme o cabo ETH", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
-                                        NOS_API.Send_RF4CE_Command("b");
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("b")
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(5)
                                         if not(NOS_API.grab_picture("Peripherals1")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1702,21 +1702,21 @@ def runTest():
                                     error_messages = NOS_API.test_cases_results_info.hdcp_nok_error_message
                                     break
                                 AutoTeste = True
-                                NOS_API.Send_RF4CE_Command("b");
+                                NOS_API.Send_RF4CE_Command("b")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 counter = 7
                         else:
                             time.sleep(2)
@@ -1773,16 +1773,16 @@ def runTest():
                             #if(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[CheckResult]")):
                             if(Button_Result and Hardware_Result and Perif_Result and SC_Result and Flash_Result and HDCP_Result):
                             
-                                NOS_API.Send_RF4CE_Command("b");
+                                NOS_API.Send_RF4CE_Command("b")
                                 AutoTeste = True                                               
                                 break
                             else:
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Button_OK]")):
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("B","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("B","feito")
                                     NOS_API.display_custom_dialog("Esperar 2seg e pressionar 'Reset', 'Emparelhar' e 'Power' alternadamente", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
                                     while (counter_buttons < 3):
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(12)
                                         if not(NOS_API.grab_picture("Buttons")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -1889,8 +1889,8 @@ def runTest():
                                                 break
                                     break
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Hardware_OK]")):
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("H","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("H","feito")
                                     if not(NOS_API.grab_picture("Hardware")):
                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -1973,8 +1973,8 @@ def runTest():
                                         break  
                                     
                                 if not(TEST_CREATION_API.compare_pictures("Teste_Auto_ref", "Auto_Test", "[Perif_OK]")):
-                                    NOS_API.Send_RF4CE_Command("b");
-                                    NOS_API.Send_RF4CE_Command("J","feito");
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    NOS_API.Send_RF4CE_Command("J","feito")
                                     if not(NOS_API.grab_picture("Peripherals")):
                                         TEST_CREATION_API.write_log_to_file("HDMI NOK")
                                         NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
@@ -2015,8 +2015,8 @@ def runTest():
                                         return                               
                                     if not(TEST_CREATION_API.compare_pictures("Peripherals_ref", "Peripherals", "[Per_USB_OK]")):
                                         NOS_API.display_custom_dialog("Confirme o cabo USB", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
-                                        NOS_API.Send_RF4CE_Command("b");
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("b")
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(5)
                                         if not(NOS_API.grab_picture("Peripherals1")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -2071,8 +2071,8 @@ def runTest():
                                     if not(TEST_CREATION_API.compare_pictures("Peripherals_ref", "Peripherals", "[Per_Eth_OK]")):
                                         AutoTeste = False
                                         NOS_API.display_custom_dialog("Confirme o cabo ETH", 1, ["Continuar"], NOS_API.WAIT_TIME_TO_CLOSE_DIALOG)
-                                        NOS_API.Send_RF4CE_Command("b");
-                                        NOS_API.Send_RF4CE_Command("o");
+                                        NOS_API.Send_RF4CE_Command("b")
+                                        NOS_API.Send_RF4CE_Command("o")
                                         time.sleep(5)
                                         if not(NOS_API.grab_picture("Peripherals1")):
                                             TEST_CREATION_API.write_log_to_file("HDMI NOK")
@@ -2157,21 +2157,21 @@ def runTest():
                                     error_messages = NOS_API.test_cases_results_info.hdcp_nok_error_message
                                     break
                                 AutoTeste = True
-                                NOS_API.Send_RF4CE_Command("b");
+                                NOS_API.Send_RF4CE_Command("b")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 time.sleep(1)
-                                NOS_API.Send_RF4CE_Command("u");
+                                NOS_API.Send_RF4CE_Command("u")
                                 counter = 7
                     elif(Menu_AD == -1):
                         if(nav_counter == 2):
@@ -2283,7 +2283,7 @@ def runTest():
             
             if(AutoTeste):
                 #NOS_API.send_rf4ce_command("[CableModem]")
-                NOS_API.Send_RF4CE_Command("C");
+                NOS_API.Send_RF4CE_Command("C")
                 time.sleep(6)
             
                 if not(NOS_API.grab_picture("CableModem")):
@@ -2326,13 +2326,13 @@ def runTest():
                     return
                 
                 if not(TEST_CREATION_API.compare_pictures("CableModem_ref", "CableModem", "[CABLE_MODEM]")):
-                    NOS_API.Send_RF4CE_Command("b");
+                    NOS_API.Send_RF4CE_Command("b")
                     time.sleep(1)
-                    NOS_API.Send_RF4CE_Command("u");
+                    NOS_API.Send_RF4CE_Command("u")
                     time.sleep(1)
-                    NOS_API.Send_RF4CE_Command("u");
+                    NOS_API.Send_RF4CE_Command("u")
                     time.sleep(1)
-                    NOS_API.Send_RF4CE_Command("C");
+                    NOS_API.Send_RF4CE_Command("C")
                     time.sleep(7)
                 
                     if not(NOS_API.grab_picture("CableModem")):
@@ -2467,7 +2467,7 @@ def runTest():
                                 if (cm_tx <= cm_tx_value_threshold):
                                     #test_result = "PASS"   
                                     test_AutodiagCM = True
-                                    NOS_API.Send_RF4CE_Command("b");
+                                    NOS_API.Send_RF4CE_Command("b")
                                 else:
                                     TEST_CREATION_API.write_log_to_file("TX value is bigger than threshold")
                                     NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.tx_fail_error_code \
@@ -2502,7 +2502,7 @@ def runTest():
                          
                 if(test_AutodiagCM):
                                       
-                    NOS_API.Send_RF4CE_Command("S");
+                    NOS_API.Send_RF4CE_Command("S")
                     time.sleep(3)
                     
                     if not(NOS_API.grab_picture("STB_Info")):
@@ -2582,7 +2582,7 @@ def runTest():
                                     TEST_CREATION_API.write_log_to_file("Docsis MAC: " + doscsis_mac)
                     
                                     test_result = "PASS"
-                                    NOS_API.Send_RF4CE_Command("b");
+                                    NOS_API.Send_RF4CE_Command("b")
                                 else:
                                     NOS_API.configure_power_switch_by_inspection()
                                     NOS_API.power_off()
@@ -2857,7 +2857,7 @@ def runTest():
                                                 TEST_CREATION_API.write_log_to_file("Docsis MAC: " + doscsis_mac)               
                                                 
                                                 test_result = "PASS"                           
-                                                NOS_API.Send_RF4CE_Command("b");
+                                                NOS_API.Send_RF4CE_Command("b")
                                                 break
                                             else:
                                                 TEST_CREATION_API.write_log_to_file("Doesn't upgrade")
