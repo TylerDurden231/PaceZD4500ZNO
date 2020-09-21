@@ -252,7 +252,7 @@ def runTest():
                     NOS_API.deinitialize()
                     return
                 start_time = int(time.time())
-                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_mod_ref", "Modulation", "[Modulation]")):
+                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_mod_ref", "Modulation", "[Modulation]", NOS_API.thres)):
                     NOS_API.Send_RF4CE_Command("r")
                     time.sleep(1)
                     if not(NOS_API.grab_picture("Modulation")):
@@ -380,7 +380,7 @@ def runTest():
                     NOS_API.deinitialize()
                     return
                 start_time = int(time.time())
-                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_anx_ref", "Anexo", "[Anexo]")):
+                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_anx_ref", "Anexo", "[Anexo]", NOS_API.thres)):
                     NOS_API.Send_RF4CE_Command("r")
                     time.sleep(1)
                     if not(NOS_API.grab_picture("Anexo")):
@@ -520,7 +520,7 @@ def runTest():
                     NOS_API.deinitialize()
                     return
                 start_time = int(time.time())
-                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_tv_ref", "Video_type", "[Video_type]")):
+                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_tv_ref", "Video_type", "[Video_type]", NOS_API.thres)):
                     NOS_API.Send_RF4CE_Command("r")
                     time.sleep(1)
                     if not(NOS_API.grab_picture("Video_type")):
@@ -660,7 +660,7 @@ def runTest():
                     NOS_API.deinitialize()
                     return
                 start_time = int(time.time())
-                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_ta_ref", "Audio_type", "[Audio_type]")):
+                while not(TEST_CREATION_API.compare_pictures("4k_Parameters_ta_ref", "Audio_type", "[Audio_type]", NOS_API.thres)):
                     NOS_API.Send_RF4CE_Command("r")
                     time.sleep(1)
                     if not(NOS_API.grab_picture("Audio_type")):
@@ -832,7 +832,7 @@ def runTest():
                 #if(TEST_CREATION_API.compare_pictures("4K_ref", "4K_HDMI", "[4K_logo]")):                
                     channel_4K = True                
                 else:
-                    if(TEST_CREATION_API.compare_pictures("4K_NoSignal", "4K_HDMI", "[4K_NoSignal]")):
+                    if(TEST_CREATION_API.compare_pictures("4K_NoSignal", "4K_HDMI", "[4K_NoSignal]", NOS_API.thres)):
                         TEST_CREATION_API.write_log_to_file("No signal 4k in HDMI 2160p.")
                         NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.hdmi_2160p_signal_level_error_code \
                                                             + "; Error message: " + NOS_API.test_cases_results_info.hdmi_2160p_signal_level_error_message)
@@ -1100,6 +1100,8 @@ def runTest():
                         return
                     
                     video_result = NOS_API.compare_pictures("HDMI_HD_Video_ref", "HD_Video_Channel", "[HALF_SCREEN_HD]")
+                    video_result_1 = NOS_API.compare_pictures("HDMI_HD_Video_2_ref", "HD_Video_Channel", "[HALF_SCREEN_HD]")
+                    video_result_2 = NOS_API.compare_pictures("HDMI_HD_Video_3_ref", "HD_Video_Channel", "[HALF_SCREEN_HD]")
                     
                     ## Record audio from HDMI
                     TEST_CREATION_API.record_audio("HD_Audio_Channel", MAX_RECORD_AUDIO_TIME)
@@ -1112,7 +1114,7 @@ def runTest():
                         TEST_CREATION_API.record_audio("HD_Audio_Channel", MAX_RECORD_AUDIO_TIME)
                         audio_result = NOS_API.compare_audio("No_Both_ref", "HD_Audio_Channel")
                         
-                    if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
+                    if ((video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
                         #test_result = "PASS"
                         
                         test_result_HDMI = True
@@ -1120,7 +1122,7 @@ def runTest():
                         time.sleep(1)
                         NOS_API.Send_RF4CE_Command("b")
                     else:
-                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                             TEST_CREATION_API.write_log_to_file("Bad Audio on HD Video")
                             NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.hdmi_1080p_signal_discontinuities_error_code \
                                                             + "; Error message: " + NOS_API.test_cases_results_info.hdmi_1080p_signal_discontinuities_error_message)
@@ -1200,6 +1202,8 @@ def runTest():
                             return
                         
                         video_result = NOS_API.compare_pictures("HDMI_SD_Video_1080_ref", "SD_Video_Channel", "[HALF_SCREEN_SD_1080]")
+                        video_result_1 = NOS_API.compare_pictures("HDMI_SD_Video_1080_2_ref", "SD_Video_Channel", "[HALF_SCREEN_SD_1080]")
+                        video_result_2 = NOS_API.compare_pictures("HDMI_SD_Video_1080_3_ref", "SD_Video_Channel", "[HALF_SCREEN_SD_1080]")
                      
                         ## Record audio from HDMI
                         TEST_CREATION_API.record_audio("SD_Audio_Channel", MAX_RECORD_AUDIO_TIME)
@@ -1213,7 +1217,7 @@ def runTest():
                             TEST_CREATION_API.record_audio("SD_Audio_Channel", MAX_RECORD_AUDIO_TIME)
                             audio_result = NOS_API.compare_audio("No_Both_ref", "SD_Audio_Channel")
                         
-                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD and audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
+                        if ((video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
                         
                            # ## Record video with duration of recording (10 seconds)
                            # TEST_CREATION_API.record_video("video", MAX_RECORD_VIDEO_TIME)
@@ -1388,7 +1392,7 @@ def runTest():
                                 error_messages = NOS_API.test_cases_results_info.hdmi_1080p_image_freezing_error_message
                                 NOS_API.set_error_message("Video HDMI") 
                         else:
-                            if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                            if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                 TEST_CREATION_API.write_log_to_file("Bad Audio on HD Video")
                                 NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.hdmi_1080p_signal_discontinuities_error_code \
                                                                 + "; Error message: " + NOS_API.test_cases_results_info.hdmi_1080p_signal_discontinuities_error_message)
@@ -1578,6 +1582,8 @@ def runTest():
                                         return
                                     
                                     video_result = NOS_API.compare_pictures("HDMI_SD_Video_720_ref", "SD_Video_Channel_720", "[HALF_SCREEN_SD_720]")
+                                    video_result_1 = NOS_API.compare_pictures("HDMI_SD_Video_720_2_ref", "SD_Video_Channel_720", "[HALF_SCREEN_SD_720]")
+                                    video_result_2 = NOS_API.compare_pictures("HDMI_SD_Video_720_3_ref", "SD_Video_Channel_720", "[HALF_SCREEN_SD_720]")
                                     
                                     ## Record audio from digital output (HDMI)
                                     TEST_CREATION_API.record_audio("SD_Audio_Channel_720", MAX_RECORD_AUDIO_TIME)
@@ -1590,7 +1596,7 @@ def runTest():
                                         TEST_CREATION_API.record_audio("SD_Audio_Channel_720", MAX_RECORD_AUDIO_TIME)
                                         audio_result = NOS_API.compare_audio("No_Both_ref", "SD_Audio_Channel_720")
                             
-                                    if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
+                                    if ((video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD) and audio_result < TEST_CREATION_API.AUDIO_THRESHOLD):
                                         #test_result = "PASS"
                                         test_result_720 = True
                                         NOS_API.Send_RF4CE_Command("b")
@@ -1599,7 +1605,7 @@ def runTest():
                                         time.sleep(2)
                                         NOS_API.Send_RF4CE_Command("b")
                                     else:
-                                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
+                                        if (video_result >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD  or video_result_1 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD or video_result_2 >= TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD):
                                             TEST_CREATION_API.write_log_to_file("Bad Video on HDMI 720 Audio.")
                                             NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.hdmi_720p_signal_absence_error_code \
                                                                                 + "; Error message: " + NOS_API.test_cases_results_info.hdmi_720p_signal_absence_error_message)
@@ -1645,10 +1651,10 @@ def runTest():
                         if(test_result_720):
                             NOS_API.Send_RF4CE_Command("I")
                             time.sleep(10)
-                            if (NOS_API.wait_for_multiple_pictures(["INITIAL_FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                            if (NOS_API.wait_for_multiple_pictures(["INITIAL_FR_Ref", "INITIAL_FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                 NOS_API.Send_RF4CE_Command("G")
                                 time.sleep(7)
-                                if (NOS_API.wait_for_multiple_pictures(["FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                                if (NOS_API.wait_for_multiple_pictures(["FR_Ref", "FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                     test_result = "PASS"
                                     
                                     #NOS_API.Send_Serial_Key("d", "feito")
@@ -1716,7 +1722,7 @@ def runTest():
                                 else:
                                     NOS_API.Send_RF4CE_Command("G")
                                     time.sleep(7)
-                                    if (NOS_API.wait_for_multiple_pictures(["FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                                    if (NOS_API.wait_for_multiple_pictures(["FR_Ref", "FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                         test_result = "PASS"
                                         #NOS_API.Send_Serial_Key("d", "feito")
                                         NOS_API.configure_power_switch_by_inspection()
@@ -1775,10 +1781,10 @@ def runTest():
                                 NOS_API.Send_RF4CE_Command("o")
                                 time.sleep(2)
 
-                                if (NOS_API.wait_for_multiple_pictures(["INITIAL_FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                                if (NOS_API.wait_for_multiple_pictures(["INITIAL_FR_Ref", "INITIAL_FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                     NOS_API.Send_RF4CE_Command("G")
                                     time.sleep(7)
-                                    if (NOS_API.wait_for_multiple_pictures(["FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                                    if (NOS_API.wait_for_multiple_pictures(["FR_Ref", "FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                         test_result = "PASS"
                                         #NOS_API.Send_Serial_Key("d", "feito")
                                         NOS_API.configure_power_switch_by_inspection()
@@ -1845,7 +1851,7 @@ def runTest():
                                     else:
                                         NOS_API.Send_RF4CE_Command("G")
                                         time.sleep(7)
-                                        if (NOS_API.wait_for_multiple_pictures(["FR_Ref"], 10, ["[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD]) != -1):
+                                        if (NOS_API.wait_for_multiple_pictures(["FR_Ref", "FR_4K_Ref"], 10, ["[FULL_SCREEN]", "[FULL_SCREEN]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60]) != -1):
                                             test_result = "PASS"
                                             #NOS_API.Send_Serial_Key("d", "feito")
                                             NOS_API.configure_power_switch_by_inspection()
