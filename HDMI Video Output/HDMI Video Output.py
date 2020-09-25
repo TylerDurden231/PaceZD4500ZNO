@@ -1373,10 +1373,140 @@ def runTest():
                                 #test_result = "PASS"
                                 test_result_1080 = True
                                 NOS_API.Send_RF4CE_Command("b")
-                                time.sleep(2)
+                                time.sleep(0.8)
+                                if not(NOS_API.grab_picture("Right_Place")):
+                                    TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
+                                    NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
+                                                            + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
+                                    NOS_API.set_error_message("Video HDMI")
+                                    error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
+                                    error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                    test_result = "FAIL"
+                                    
+                                    NOS_API.add_test_case_result_to_file_report(
+                                                    test_result,
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    "- - - - - - - - - - - - - - - - - - - -",
+                                                    error_codes,
+                                                    error_messages)
+                                    end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                                    report_file = ""
+                                    if (test_result != "PASS"):
+                                        report_file = NOS_API.create_test_case_log_file(
+                                                        NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                        NOS_API.test_cases_results_info.nos_sap_number,
+                                                        NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                        NOS_API.test_cases_results_info.mac_using_barcode,
+                                                        end_time)
+                                        NOS_API.upload_file_report(report_file)
+                                        NOS_API.test_cases_results_info.isTestOK = False
+                
+                
+                                    ## Update test result
+                                    TEST_CREATION_API.update_test_result(test_result)
+                                    
+                                    ## Return DUT to initial state and de-initialize grabber device
+                                    NOS_API.deinitialize()
+                                    
+                                    NOS_API.send_report_over_mqtt_test_plan(
+                                        test_result,
+                                        end_time,
+                                        error_codes,
+                                        report_file)
+
+                                    return
+                                start_time = int(time.time())
+                                while not (TEST_CREATION_API.compare_pictures("4k_Parameters_tv_ref", "Right_Place", "[CABLE_MODEM]", NOS_API.thres)):
+                                    ##Perform Down
+                                    NOS_API.Send_RF4CE_Command("b")
+                                    timeout = int(time.time()) - start_time
+                                    if (timeout > 20):
+                                        TEST_CREATION_API.write_log_to_file("STB couldn't Navigate to right place.")
+                                        
+                                        NOS_API.set_error_message("Navegação")
+                                        
+                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.navigation_error_code \
+                                                                            + "; Error message: " + NOS_API.test_cases_results_info.navigation_error_message) 
+                                        error_codes = NOS_API.test_cases_results_info.navigation_error_code
+                                        error_messages = NOS_API.test_cases_results_info.navigation_error_message
+                                        test_result = "FAIL"
+                                        
+                                        NOS_API.add_test_case_result_to_file_report(
+                                                        test_result,
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        error_codes,
+                                                        error_messages)
+                                        end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                                        report_file = ""
+                                        if (test_result != "PASS"):
+                                            report_file = NOS_API.create_test_case_log_file(
+                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                            NOS_API.test_cases_results_info.nos_sap_number,
+                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                            NOS_API.test_cases_results_info.mac_using_barcode,
+                                                            end_time)
+                                            NOS_API.upload_file_report(report_file)
+                                            NOS_API.test_cases_results_info.isTestOK = False
+                    
+                    
+                                        ## Update test result
+                                        TEST_CREATION_API.update_test_result(test_result)
+                                        
+                                        ## Return DUT to initial state and de-initialize grabber device
+                                        NOS_API.deinitialize()
+                                        
+                                        NOS_API.send_report_over_mqtt_test_plan(
+                                            test_result,
+                                            end_time,
+                                            error_codes,
+                                            report_file)
+                                        return
+                                    time.sleep(0.8)
+                                    if not(NOS_API.grab_picture("Right_Place")):
+                                        TEST_CREATION_API.write_log_to_file("Image is not displayed on HDMI")
+                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.image_absence_hdmi_error_code \
+                                                                + "; Error message: " + NOS_API.test_cases_results_info.image_absence_hdmi_error_message)
+                                        NOS_API.set_error_message("Video HDMI")
+                                        error_codes = NOS_API.test_cases_results_info.image_absence_hdmi_error_code
+                                        error_messages = NOS_API.test_cases_results_info.image_absence_hdmi_error_message
+                                        test_result = "FAIL"
+                                        
+                                        NOS_API.add_test_case_result_to_file_report(
+                                                        test_result,
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                        error_codes,
+                                                        error_messages)
+                                        end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S') 
+                                        report_file = ""
+                                        if (test_result != "PASS"):
+                                            report_file = NOS_API.create_test_case_log_file(
+                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                            NOS_API.test_cases_results_info.nos_sap_number,
+                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                            NOS_API.test_cases_results_info.mac_using_barcode,
+                                                            end_time)
+                                            NOS_API.upload_file_report(report_file)
+                                            NOS_API.test_cases_results_info.isTestOK = False
+                    
+                    
+                                        ## Update test result
+                                        TEST_CREATION_API.update_test_result(test_result)
+                                        
+                                        ## Return DUT to initial state and de-initialize grabber device
+                                        NOS_API.deinitialize()
+                                        
+                                        NOS_API.send_report_over_mqtt_test_plan(
+                                            test_result,
+                                            end_time,
+                                            error_codes,
+                                            report_file)
+
+                                        return
+                                    
                                 NOS_API.Send_RF4CE_Command("b")
-                                time.sleep(2)
-                                NOS_API.Send_RF4CE_Command("b")
+
                                 #else:
                                 #    TEST_CREATION_API.write_log_to_file("System couldn't record Video")
                                 #    NOS_API.update_test_slot_comment("Error code: " + NOS_API.test_cases_results_info.grabber_error_code \

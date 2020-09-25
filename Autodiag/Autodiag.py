@@ -1175,7 +1175,7 @@ def runTest():
                     TEST_CREATION_API.write_log_to_file("Number of attempts: " + str(counter))
                     Menu_AD = NOS_API.wait_for_multiple_pictures(["Menu_ref", "Menu_4K_ref", "Menu_4K_ref1"], WAIT_AUTODIAG_TEST, ["[Menu]", "[Menu_4k]", "[Menu_4k]"], [80, 60, 60])
                     if (Menu_AD != -1 and Menu_AD != -2):
-                        if Menu_AD == 1:
+                        if Menu_AD == 1 or Menu_AD == 2:
                             NOS_API.change_4k_resolution_uma()
                             video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
                             if video_height != "1080":
@@ -2860,10 +2860,46 @@ def runTest():
                                         #AutoDiag_start = NOS_API.wait_for_multiple_pictures(["Menu_ref", "Paring_ref"], WAIT_AUTODIAG_TEST, ["[Menu]", "[Paring]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD])
                                         AutoDiag_start = NOS_API.wait_for_multiple_pictures(["Menu_ref", "Paring_ref", "Menu_4K_ref", "Paring_4K_ref", "Menu_4K_ref1","Paring_4K_ref1"], WAIT_AUTODIAG_TEST, ["[Menu]", "[Paring]", "[Menu_4k]", "[Paring_4k]", "[Menu_4k]", "[Paring_4k]"], [TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, TEST_CREATION_API.DEFAULT_HDMI_VIDEO_THRESHOLD, 60, 60, 60, 60])
                                         if(AutoDiag_start != -1 and AutoDiag_start != -2):
-                                            if AutoDiag_start == 2 or AutoDiag_start == 3:
+                                            if AutoDiag_start == 2 or AutoDiag_start == 3 or AutoDiag_start == 4 or AutoDiag_start == 5:
                                                 NOS_API.change_4k_resolution_uma()
                                                 video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
                                                 if video_height != "1080":
+                                                    if not(NOS_API.grab_picture("STB_Info")):
+                                                        NOS_API.set_error_message("Resolução")
+                                                        NOS_API.update_test_slot_comment("Error code = " + NOS_API.test_cases_results_info.resolution_error_code \
+                                                                                        + "; Error message: " + NOS_API.test_cases_results_info.resolution_error_message) 
+                                                        error_codes = NOS_API.test_cases_results_info.resolution_error_code
+                                                        error_messages = NOS_API.test_cases_results_info.resolution_error_message                     
+                                                        NOS_API.add_test_case_result_to_file_report(
+                                                                        test_result,
+                                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                                        "- - - - - - - - - - - - - - - - - - - -",
+                                                                        error_codes,
+                                                                        error_messages)
+                                                        end_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                                                        report_file = ""    
+                                                        if (test_result != "PASS"):
+                                                            report_file = NOS_API.create_test_case_log_file(
+                                                                            NOS_API.test_cases_results_info.s_n_using_barcode,
+                                                                            NOS_API.test_cases_results_info.nos_sap_number,
+                                                                            NOS_API.test_cases_results_info.cas_id_using_barcode,
+                                                                            NOS_API.test_cases_results_info.mac_using_barcode,
+                                                                            end_time)
+                                                            NOS_API.upload_file_report(report_file) 
+                                                            NOS_API.test_cases_results_info.isTestOK = False
+                                                            
+                                                            NOS_API.send_report_over_mqtt_test_plan(
+                                                                    test_result,
+                                                                    end_time,
+                                                                    error_codes,
+                                                                    report_file)
+                                                    
+                                                        ## Update test result
+                                                        TEST_CREATION_API.update_test_result(test_result)
+                                                    
+                                                        ## Return DUT to initial state and de-initialize grabber device
+                                                        NOS_API.deinitialize()
+                                                        return
                                                     NOS_API.change_4k_resolution_uma()
                                                     video_height = NOS_API.get_av_format_info(TEST_CREATION_API.AudioVideoInfoType.video_height)
                                                     if video_height != "1080":
